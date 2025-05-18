@@ -1,0 +1,5 @@
+broker: 127.0.0.1
+username: admin
+password: password
+httpPort: 3001
+mqttActive: false
