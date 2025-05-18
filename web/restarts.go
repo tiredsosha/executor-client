@@ -8,6 +8,8 @@ import (
 )
 
 func restart(c *gin.Context) {
+	logger.Info.Println("restart request")
+
 	if err := exec.Command("cmd", "/C", "shutdown", "/r", "/f").Run(); err != nil {
 		logger.Error.Println("Failed to initiate shutdown:", err)
 	}

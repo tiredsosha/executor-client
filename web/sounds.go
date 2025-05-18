@@ -19,7 +19,7 @@ func soundChange(c *gin.Context) {
 		return
 	}
 
-	logger.Info.Println("request data -", data)
+	logger.Info.Println("sound change request -", data)
 
 	volumeInt, _ := strconv.Atoi(data.Command)
 	volume.SetVolume(volumeInt)

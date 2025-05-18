@@ -8,6 +8,8 @@ import (
 )
 
 func powerOff(c *gin.Context) {
+	logger.Info.Println("shutdown request")
+
 	if err := exec.Command("cmd", "/C", "shutdown", "/s", "/f").Run(); err != nil {
 		logger.Error.Println("Failed to initiate shutdown:", err)
 	}
