@@ -13,6 +13,7 @@ func router(server *gin.Engine) {
 	server.GET("/off", powerOff)
 	server.GET("/restart", restart)
 	server.POST("/sound", soundChange)
+	server.GET("/status", status)
 	server.GET("/getTest", testGet)
 	server.POST("/postTest", testPost)
 }
