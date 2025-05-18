@@ -1,15 +1,16 @@
 package web
 
 import (
+	"strconv"
+
 	"github.com/gin-gonic/gin"
-	"github.com/tiredsosha/admin/protocols"
-	config "github.com/tiredsosha/admin/tools/configurator"
-	"github.com/tiredsosha/admin/tools/formater"
-	"github.com/tiredsosha/admin/tools/logger"
+	"github.com/itchyny/volume-go"
+
+	"github.com/tiredsosha/executor-client/tools/logger"
 )
 
-func soundZone(c *gin.Context) {
-	var data JsonCommand
+func soundChange(c *gin.Context) {
+	var data JsonNoID
 
 	// Bind JSON and validate
 	if err := c.ShouldBindJSON(&data); err != nil {
@@ -20,10 +21,8 @@ func soundZone(c *gin.Context) {
 
 	logger.Info.Println("request data -", data)
 
-	go protocols.SendPost(formater.CustomStr(
-		"http://{ip}:3001/sound",
-		map[string]any{"ip": config.FindPC(data.Zone, "ip")}), data.Command,
-	)
+	volumeInt, _ := strconv.Atoi(data.Command)
+	volume.SetVolume(volumeInt)
 
 	c.JSON(200, gin.H{
 		"message": "OK",

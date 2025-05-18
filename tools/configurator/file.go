@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/tiredsosha/admin/tools/logger"
+	"github.com/tiredsosha/executor-client/tools/logger"
 	"gopkg.in/yaml.v3"
 )
 
@@ -55,7 +55,7 @@ func confFile() *conf {
 		Username: "admin",
 		Password: "password",
 		MqttOn:   false,
-		Port:     8080,
+		Port:     3001,
 	}
 
 	yamlData, _ := yaml.Marshal(confDef)
@@ -81,20 +81,4 @@ func ConfInit() *conf {
 	}
 
 	return cfg
-}
-
-func ConfSubInit() {
-	// если наше приложение не видит побочных конфигов
-	if err := configRelay(); err != nil {
-		logger.Warn.Println(err)
-		logger.Error.Fatal("EXITING")
-	}
-	if err := configPC(); err != nil {
-		logger.Warn.Println(err)
-		logger.Error.Fatal("EXITING")
-	}
-	if err := configPJ(); err != nil {
-		logger.Warn.Println(err)
-		logger.Error.Fatal("EXITING")
-	}
 }

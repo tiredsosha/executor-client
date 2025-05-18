@@ -6,14 +6,13 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/tiredsosha/admin/tray"
+	"github.com/tiredsosha/executor-client/tray"
 )
 
 func router(server *gin.Engine) {
-	server.GET("/on", powerPark)
-	server.GET("/off", powerZone)
-	server.GET("/restart", powerPc)
-	server.POST("/sound", powerProjector)
+	server.GET("/off", powerOff)
+	server.GET("/restart", restart)
+	server.POST("/sound", soundChange)
 	server.GET("/getTest", testGet)
 	server.POST("/postTest", testPost)
 }

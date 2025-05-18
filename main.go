@@ -1,22 +1,21 @@
 package main
 
 import (
-	"github.com/tiredsosha/admin/mosquitto"
-	config "github.com/tiredsosha/admin/tools/configurator"
-	"github.com/tiredsosha/admin/tools/logger"
-	"github.com/tiredsosha/admin/tray"
-	"github.com/tiredsosha/admin/web"
+	"github.com/tiredsosha/executor-client/mosquitto"
+	config "github.com/tiredsosha/executor-client/tools/configurator"
+	"github.com/tiredsosha/executor-client/tools/logger"
+	"github.com/tiredsosha/executor-client/tray"
+	"github.com/tiredsosha/executor-client/web"
 )
 
 const (
-	version = "1.0.0.beta.1"
+	version = "1.0.0"
 )
 
 func main() {
 	logger.LogInit(true)
 
 	cfg := config.ConfInit()
-	config.ConfSubInit()
 
 	hostname := "client"
 	topicPrefix := "executor/"
