@@ -20,9 +20,9 @@ func LogInit(debug bool) {
 	if debug {
 		deleteLog := logCreation()
 		if deleteLog {
-			os.Remove("admin.log")
+			os.Remove("executor_client.log")
 		}
-		file, err := os.OpenFile("admin.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+		file, err := os.OpenFile("executor_client.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 		if err == nil {
 			out = file
 		}
@@ -74,7 +74,7 @@ func DebugLog(version string, debug bool, mqttOn bool, hostname, broker, usernam
 func logCreation() bool {
 	var deleteLog bool = false
 
-	if log, err := os.Stat("admin.log"); err == nil {
+	if log, err := os.Stat("executor_client.log"); err == nil {
 		bytesSize := log.Size()
 		// проверяем что лог не супер длинный и тяжелый.
 		if bytesSize > 300000 {
